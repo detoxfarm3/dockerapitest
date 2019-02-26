@@ -13,5 +13,10 @@ variables:
   imageName: 'detoxfarm3/test-api:$(build.buildId)'
 
 steps:
-- script: docker build -f Dockerfile -t $(imageName) .
+- script:  |
+    docker build -f Dockerfile -t $(imageName) .
+    npm install
+    docker build -f Dockerfile -t $(dockerId).azurecr.io/$(imageName) .
+    docker login -u $(dockerId) -p $pswd $(dockerId).azurecr.io
+    docker push $(dockerId).azurecr.io/$(imageName)
   displayName: 'docker build'
