@@ -3,38 +3,20 @@ kind: Deployment
 metadata:
   name: test-api
   labels:
-    app: test
+    app: test-api
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: test
+      app: test-api
   template:
     metadata:
       labels:
-        app: test
+        app: test-api
     spec:
       containers:
-        - name: test
-          image: ibmtestacr.azurecr.io/detoxfarm3/dockerapitest:latest   apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: test-api
-  labels:
-    app: test
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: test
-  template:
-    metadata:
-      labels:
-        app: test
-    spec:
-      containers:
-        - name: test
-          image: ibmtestacr.azurecr.io/detoxfarm3/dockerapitest:latest  
+        - name: test-api
+          image: ibmtestacr.azurecr.io/detoxfarm3/test-api   
           resources:
             requests:
               cpu: 100m
@@ -44,17 +26,4 @@ spec:
               memory: 256Mi       
           ports:
             - containerPort: 3000
-              name: test
-      imagePullSecrets:
-        - name: testapi
-          resources:
-            requests:
-              cpu: 100m
-              memory: 128Mi
-            limits:
-              cpu: 250m
-              memory: 256Mi       
-          ports:
-            - containerPort: 3000
-              name: test
-
+              name: test-api
