@@ -57,6 +57,4 @@ spec:
           ports:
             - containerPort: 3000
               name: test
-      imagePullSecrets:
-        - name: testapi
 
