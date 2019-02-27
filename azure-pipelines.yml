@@ -16,8 +16,7 @@ steps:
 - script:  |
     docker build -f Dockerfile -t $(imageName) .
     npm install
-    docker images
-    docker build -f Dockerfile -t $(dockerId).azurecr.io/$(imageName) .
-    docker login ibmtestacr.azurecr.io -u ibmtestacr -p ot9g606xp/Dzftb8Brmbx33UUGIQkagv
-    docker push ibmtestacr.azurecr.io/$(imageName)
+    docker login -u $(dockerId) -p $pswd $(dockerId).azurecr.io
+    docker tag $(imageName) $(dockerId).azurecr.io/$(imageName)
+    docker push $(dockerId).azurecr.io/$(imageName)
   displayName: 'docker build'
