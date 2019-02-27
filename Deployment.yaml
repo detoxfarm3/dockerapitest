@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: test-api
-          image: ibmtestacr.azurecr.io/detoxfarm3/test-api
+          image: ibmtestacr.azurecr.io/detoxfarm3/dockerapitest
           resources:
             requests:
               cpu: 100m
@@ -27,4 +27,17 @@ spec:
           ports:
             - containerPort: 3000
               name: test-api
- ---
+      imagePullSecrets:
+        - name: testapi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-api
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 3000
+  selector:
+    app: test
