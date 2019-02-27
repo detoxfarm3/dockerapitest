@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: test-api
-          image: ibmtestacr.azurecr.io/detoxfarm3/test-api   
+          image: ibmtestacr.azurecr.io/detoxfarm3/test-api
           resources:
             requests:
               cpu: 100m
