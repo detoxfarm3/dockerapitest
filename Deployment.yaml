@@ -28,7 +28,7 @@ spec:
             - containerPort: 3001
               name: test-api
       imagePullSecrets:
-        - name: testapi
+        - name: test
 ---
 apiVersion: v1
 kind: Service
